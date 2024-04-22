@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rugby_stat_tracker", "rugby_stat_tracker.csproj", "{2CB70273-BBF3-4158-818A-DD0C2CA1C9B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "rugby_stat_tracker", "rugby_stat_tracker.csproj", "{2CB70273-BBF3-4158-818A-DD0C2CA1C9B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B113D574-9787-4E49-B01C-711343AA4EFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
