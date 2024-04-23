@@ -14,10 +14,14 @@ namespace rugby_stat_tracker.Data
 
         // Sets tables in Db (convetion is plural)
         public DbSet<Player> Players { get; set; }
-
         public DbSet<Team> Teams { get; set; }
-
         public DbSet<Match> Matches { get; set; }
+        public DbSet<IndividualStats> IndividualStats { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }

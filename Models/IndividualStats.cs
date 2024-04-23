@@ -1,8 +1,9 @@
 ﻿
 namespace rugby_stat_tracker.Models
 {
-    public class IndividualStat
+    public class IndividualStats
     {
+
         public Player PlayerId { get; set; }
         public Match MatchId { get; set; }
 
