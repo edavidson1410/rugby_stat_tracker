@@ -19,14 +19,5 @@ namespace rugby_stat_tracker.Data
 
         public DbSet<Match> Matches { get; set; }
 
-        // Customizes tables without going into Db
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Many to Many relationships
-            modelBuilder.Entity<Team>()
-                 .HasKey(p => new { p.Matches });
-            modelBuilder.Entity<Team>()
-                .HasMany(p => p.Matches);
-        }
     }
 }
