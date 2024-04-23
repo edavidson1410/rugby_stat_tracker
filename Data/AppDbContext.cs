@@ -6,19 +6,27 @@ namespace rugby_stat_tracker.Data
 {
     public class AppDbContext : DbContext
     {
-        protected readonly IConfiguration Configuration;
-
-        public AppDbContext(IConfiguration configuration)
+        // Connection to Db
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            Configuration = configuration;
+
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            // connect to postgres with connection string from app settings
-            options.UseNpgsql(Configuration.GetConnectionString("rugby_stat_tracker"));
-        }
-
+        // Sets tables in Db (convetion is plural)
         public DbSet<Player> Players { get; set; }
+
+        public DbSet<Team> Teams { get; set; }
+
+        public DbSet<Match> Matches { get; set; }
+
+        // Customizes tables without going into Db
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Many to Many relationships
+            modelBuilder.Entity<Team>()
+                 .HasKey(p => new { p.Matches });
+            modelBuilder.Entity<Team>()
+                .HasMany(p => p.Matches);
+        }
     }
 }
