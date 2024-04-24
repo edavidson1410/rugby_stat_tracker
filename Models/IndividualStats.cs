@@ -6,7 +6,6 @@ namespace rugby_stat_tracker.Models
 
         public Player PlayerId { get; set; }
         public Match MatchId { get; set; }
-
         // Do I need this?
         public Team TeamId { get; set; }
         public int Position { get; set; }

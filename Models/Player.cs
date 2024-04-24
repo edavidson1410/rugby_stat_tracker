@@ -7,6 +7,8 @@
         public string? Birthdate { get; set; }
         public string? Position { get; set; }
         public string? Hometown { get; set; }
+        public Team TeamId { get; set; }
+        public ICollection<IndividualStats> IndividualStats { get; set; }
 
     }
 }

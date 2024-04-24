@@ -18,10 +18,13 @@ namespace rugby_stat_tracker.Data
         public DbSet<Match> Matches { get; set; }
         public DbSet<IndividualStats> IndividualStats { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        //TODO: might need to join relationships
+/*        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-        }
+
+
+        }*/
 
     }
 }
