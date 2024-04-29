@@ -5,7 +5,8 @@ using rugby_stat_tracker.Models;
 
 namespace rugby_stat_tracker.Repositories
 {
-    public class PlayerRepository : IPlayerRepository
+    //public class PlayerRepository : IPlayerRepository
+    public class PlayerRepository
     {
        private readonly DataContext _appDbContext;
 
@@ -15,25 +16,19 @@ namespace rugby_stat_tracker.Repositories
         }
 
         [HttpGet]
-        public List<Player> GetAllPlayers(int id)
+        public List<Player> GetAll(int id)
         {
             return _appDbContext.Players.OrderBy(p => p.Id).ToList();
         }
 
-        public Player GetPlayerById(int id)
+        public Player GetById(int id)
         {
             return _appDbContext.Players.FirstOrDefault(p => p.Id == id);
         }
 
-        public Player GetPlayerByName(string name) 
+        public Player GetByName(string name) 
         {
             return _appDbContext.Players.FirstOrDefault(p => p.Name == name);
-        }
-
-        [HttpPost]
-        public bool CreatePlayer(int id, DateTime Birthdate, string Position, string Hometown)
-        {
-
         }
     }
 }

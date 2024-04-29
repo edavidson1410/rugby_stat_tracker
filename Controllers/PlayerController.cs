@@ -30,15 +30,15 @@ namespace rugby_stat_tracker.Controllers
             return Ok(playerResult);
         }
 
-        [HttpPost]
-        public ActionResult<Player> CreatePlayer(string name, DateTime Birthdate, int Position, string Hometown)
-        {
-            var result = PlayerDataStore.Current.Players.FirstOrDefault(p => p.Name == name);
-            if (result == null)
-            {
+        //[HttpPost]
+        //public ActionResult<Player> CreatePlayer(Player player)
+        //{
+        //    var result = PlayerDataStore.Current.Players.FirstOrDefault(p => p.Name == player.Name);
+        //    if (result == null)
+        //    {
 
-            }
-        };
+        //    }
+        //};
 
     }
 }

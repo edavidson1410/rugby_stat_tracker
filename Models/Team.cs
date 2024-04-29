@@ -12,6 +12,5 @@
 
         public ICollection<Match> Matches { get; set; }
 
-        public ICollection<IndividualStats> IndividualStats { get; set; }
     }
 }
