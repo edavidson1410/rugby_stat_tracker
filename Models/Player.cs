@@ -22,8 +22,8 @@ namespace rugby_stat_tracker.Models
             }
         }
         //Instantiating a empty collection will avoid null issues
-        public ICollection<IndividualGames> IndividualGames { get; set; }
-            = new List<IndividualGames>();
+        public ICollection<IndividualGame> IndividualGames { get; set; }
+            = new List<IndividualGame>();
 
     }
 }

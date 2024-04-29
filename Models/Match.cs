@@ -19,6 +19,6 @@
 
         public DateOnly Date { get; set; }
 
-        public ICollection<IndividualGames> IndividualGames { get; set;}
+        public ICollection<IndividualGame> IndividualGames { get; set;}
     }
 }

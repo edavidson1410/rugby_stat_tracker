@@ -6,10 +6,10 @@ namespace rugby_stat_tracker.Controllers
     //Child resource
     [Route("api/players/{playerId}/individualgames")]
     [ApiController]
-    public class IndividualsGamesController : ControllerBase
+    public class IndividualGameController : ControllerBase
     {
         [HttpGet]
-        public ActionResult<IEnumerable<IndividualGames>> GetIndividualStats(int playerId)
+        public ActionResult<IEnumerable<IndividualGame>> GetIndividualStats(int playerId)
         {
             var player = PlayerDataStore.Current.Players.FirstOrDefault(p => p.Id == playerId);
 
@@ -22,7 +22,7 @@ namespace rugby_stat_tracker.Controllers
         }
 
         [HttpGet("{individualgameid}")]
-        public ActionResult<IndividualGames> GetIndividualStat(int playerid, int individualstatid)
+        public ActionResult<IndividualGame> GetIndividualStat(int playerid, int individualstatid)
         {
             //find playe first
             var player = PlayerDataStore.Current.Players

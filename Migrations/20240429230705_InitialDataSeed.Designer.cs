@@ -12,8 +12,8 @@ using rugby_stat_tracker.Data;
 namespace rugby_stat_tracker.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240429220735_InitialMigrationPlayersGames")]
-    partial class InitialMigrationPlayersGames
+    [Migration("20240429230705_InitialDataSeed")]
+    partial class InitialDataSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace rugby_stat_tracker.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("rugby_stat_tracker.Models.IndividualGames", b =>
+            modelBuilder.Entity("rugby_stat_tracker.Models.IndividualGame", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,7 +36,7 @@ namespace rugby_stat_tracker.Migrations
                     b.Property<int>("Minutes")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerIdId")
+                    b.Property<int?>("PlayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("Position")
@@ -47,9 +47,32 @@ namespace rugby_stat_tracker.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerIdId");
+                    b.HasIndex("PlayerId");
 
-                    b.ToTable("IndividualStats");
+                    b.ToTable("IndividualGames");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Minutes = 80,
+                            Position = 13,
+                            Tries = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Minutes = 80,
+                            Position = 13,
+                            Tries = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Minutes = 80,
+                            Position = 13,
+                            Tries = 1
+                        });
                 });
 
             modelBuilder.Entity("rugby_stat_tracker.Models.Player", b =>
@@ -76,17 +99,39 @@ namespace rugby_stat_tracker.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Birthdate = new DateTime(1992, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hometown = "Jackson, MO",
+                            Name = "Eric Davidson",
+                            Position = 13
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Birthdate = new DateTime(1992, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hometown = "Nelson, New Zealand",
+                            Name = "Aidan Milne",
+                            Position = 12
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Birthdate = new DateTime(1992, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Hometown = "Mexico",
+                            Name = "Victor Romero",
+                            Position = 6
+                        });
                 });
 
-            modelBuilder.Entity("rugby_stat_tracker.Models.IndividualGames", b =>
+            modelBuilder.Entity("rugby_stat_tracker.Models.IndividualGame", b =>
                 {
-                    b.HasOne("rugby_stat_tracker.Models.Player", "PlayerId")
+                    b.HasOne("rugby_stat_tracker.Models.Player", null)
                         .WithMany("IndividualGames")
-                        .HasForeignKey("PlayerIdId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PlayerId");
+                        .HasForeignKey("PlayerId");
                 });
 
             modelBuilder.Entity("rugby_stat_tracker.Models.Player", b =>

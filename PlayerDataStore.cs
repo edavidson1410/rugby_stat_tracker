@@ -20,9 +20,9 @@ namespace rugby_stat_tracker
                     Hometown = "Jackson, MO",
                     Birthdate = DateTime.Parse("1992-07-26"),
                     Position = 13,
-                    IndividualGames = new List<IndividualGames>()
+                    IndividualGames = new List<IndividualGame>()
                     {
-                        new IndividualGames()
+                        new IndividualGame()
                         {
                             Id=1,
                             Position=13,
@@ -38,9 +38,9 @@ namespace rugby_stat_tracker
                     Hometown = "Nelson, New Zealand",
                     Birthdate = DateTime.Parse("1992-07-26"),
                     Position = 12,
-                    IndividualGames = new List<IndividualGames>()
+                    IndividualGames = new List<IndividualGame>()
                     {
-                        new IndividualGames()
+                        new IndividualGame()
                         {
                             Id=2,
                             Position=13,
@@ -56,9 +56,9 @@ namespace rugby_stat_tracker
                     Hometown = "Mexico",
                     Birthdate = DateTime.Parse("1992-07-26"),
                     Position = 6,
-                    IndividualGames = new List<IndividualGames>()
+                    IndividualGames = new List<IndividualGame>()
                     {
-                        new IndividualGames()
+                        new IndividualGame()
                         {
                             Id=3,
                             Position=13,
