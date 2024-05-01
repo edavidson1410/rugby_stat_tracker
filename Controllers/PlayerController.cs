@@ -38,15 +38,24 @@ namespace rugby_stat_tracker.Controllers
             return Ok(playerEntity);
         }
 
-        //[HttpPost]
-        //public ActionResult<Player> CreatePlayer(Player player)
-        //{
-        //    var result = PlayerDataStore.Current.Players.FirstOrDefault(p => p.Name == player.Name);
-        //    if (result == null)
-        //    {
+        [HttpPost]
+        public async Task<ActionResult<Player>> CreatePlayer([FromBody]Player player)
+        {
+            try
+            {
+                if (player == null)
+                    return BadRequest();
 
-        //    }
-        //};
+                var createdPlayer = await _playerRepository.CreatePlayer(player);
 
+                return CreatedAtAction(nameof(CreatePlayer),
+                    new { id = createdPlayer.Id }, createdPlayer);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error creating new player record");
+            }
+        }
     }
 }

@@ -40,6 +40,13 @@ namespace rugby_stat_tracker.Repositories
             }
             return await _appDbContext.Players.FirstOrDefaultAsync(p => p.Name == name);
         }
+
+        public async Task<Player> CreatePlayer(Player player)
+        {
+            var playerEntity = await _appDbContext.Players.AddAsync(player);
+            await _appDbContext.SaveChangesAsync();
+            return playerEntity.Entity;
+        }
     }
 }
  
