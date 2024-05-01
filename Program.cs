@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using rugby_stat_tracker.Data;
+using rugby_stat_tracker.Interfaces;
+using rugby_stat_tracker.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +28,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 
 var app = builder.Build();
 

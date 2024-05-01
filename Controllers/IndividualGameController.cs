@@ -5,6 +5,7 @@ namespace rugby_stat_tracker.Controllers
 {
     //Child resource
     [Route("api/players/{playerId}/individualgames")]
+    [Produces("application/json")]
     [ApiController]
     public class IndividualGameController : ControllerBase
     {

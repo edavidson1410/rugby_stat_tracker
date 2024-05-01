@@ -1,34 +1,44 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using rugby_stat_tracker.Data;
 using rugby_stat_tracker.Interfaces;
 using rugby_stat_tracker.Models;
 
 namespace rugby_stat_tracker.Repositories
 {
-    //public class PlayerRepository : IPlayerRepository
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
        private readonly DataContext _appDbContext;
 
         public PlayerRepository(DataContext appDbContext)
         {
-            _appDbContext = appDbContext;
+            _appDbContext = appDbContext ?? throw new ArgumentNullException(nameof(appDbContext));
         }
 
         [HttpGet]
-        public List<Player> GetAll(int id)
+        public async Task<IEnumerable<Player>> GetAllPlayersAsync()
         {
-            return _appDbContext.Players.OrderBy(p => p.Id).ToList();
+            return await _appDbContext.Players.OrderBy(p => p.Name).ToListAsync();
         }
 
-        public Player GetById(int id)
+        public async Task<Player?> GetByPlayerIdAsync(int id, bool includeIndividualGames)
         {
-            return _appDbContext.Players.FirstOrDefault(p => p.Id == id);
+            if (includeIndividualGames)
+            {
+                return await _appDbContext.Players.Include(p => p.IndividualGames)
+                    .FirstOrDefaultAsync(p => p.Id == id);
+            }
+            return await _appDbContext.Players.FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public Player GetByName(string name) 
+        public async Task<Player?> GetByPlayerNameAsync(string name, bool includeIndividualGames) 
         {
-            return _appDbContext.Players.FirstOrDefault(p => p.Name == name);
+            if (includeIndividualGames)
+            {
+                return await _appDbContext.Players.Include(p => p.IndividualGames)
+                    .FirstOrDefaultAsync(p => p.Name == name);
+            }
+            return await _appDbContext.Players.FirstOrDefaultAsync(p => p.Name == name);
         }
     }
 }
